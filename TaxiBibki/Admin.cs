@@ -195,5 +195,21 @@ namespace TaxiBibki
             operatorCard.Show();
             Hide();
         }
+
+        private void dataGridView3_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            Store.currentClientId = dataGridView3.Rows[e.RowIndex].Cells[0].Value.ToString();
+            DriverCard driverCard = new DriverCard();
+            driverCard.Show();
+            Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DriverCard driverCard = new DriverCard();
+            driverCard.Show();
+            Hide();
+        }
     }
 }

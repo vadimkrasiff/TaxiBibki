@@ -146,7 +146,7 @@ namespace TaxiBibki
         private void button1_Click(object sender, EventArgs e)
         {
             bool error = false;
-            if (textBox1.Text == "")
+            if (textBox2.Text == "")
             {
                 surnameError.Visible = true;
                 error = true;
@@ -155,7 +155,7 @@ namespace TaxiBibki
             {
                 surnameError.Visible = false;
             }
-            if (textBox2.Text == "")
+            if (textBox1.Text == "")
             {
                 NameError.Visible = true;
                 error = true;

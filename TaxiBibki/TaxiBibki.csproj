@@ -61,6 +61,12 @@
     <Compile Include="ClientCard.Designer.cs">
       <DependentUpon>ClientCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="DriverCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DriverCard.Designer.cs">
+      <DependentUpon>DriverCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="MySQL1.cs" />
+    <Compile Include="NewPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPassword.Designer.cs">
+      <DependentUpon>NewPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="OperatorCard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,8 +95,14 @@
     <EmbeddedResource Include="ClientCard.resx">
       <DependentUpon>ClientCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DriverCard.resx">
+      <DependentUpon>DriverCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPassword.resx">
+      <DependentUpon>NewPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperatorCard.resx">
       <DependentUpon>OperatorCard.cs</DependentUpon>

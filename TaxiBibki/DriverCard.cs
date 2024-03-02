@@ -11,15 +11,16 @@ using System.Windows.Forms;
 
 namespace TaxiBibki
 {
-    public partial class OperatorCard : Form
+    public partial class DriverCard : Form
     {
-        public OperatorCard()
+        public DriverCard()
         {
             InitializeComponent();
         }
 
-        private void OperatorCard_Load(object sender, EventArgs e)
+        private void DriverCard_Load(object sender, EventArgs e)
         {
+            getCars();
             if (Store.currentClientId != "")
             {
                 button1.Text = "Сохранить";
@@ -28,7 +29,7 @@ namespace TaxiBibki
                 label5.Visible = false;
                 passwordError.Visible = false;
                 updatePassword.Visible = true;
-                getOperator();
+                getDriver();
             }
             else
             {
@@ -41,12 +42,12 @@ namespace TaxiBibki
             }
         }
 
-        private void getOperator()
+        private void getDriver()
         {
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
 
-            string sql = "select first_name, last_name, username, phone from users where id = @id limit 1";
+            string sql = "select first_name, last_name, username, car_number, phone from users where id = @id limit 1";
             MySqlCommand command = new MySqlCommand(sql, conn);
             command.Parameters.Add("@id", MySqlDbType.VarChar, 30);
             command.Parameters["@id"].Value = Store.currentClientId;
@@ -57,6 +58,7 @@ namespace TaxiBibki
                 textBox2.Text = reader["last_name"].ToString();
                 textBox3.Text = reader["username"].ToString();
                 maskedTextBox1.Text = reader["phone"].ToString();
+                comboBox1.Text = reader["car_number"].ToString();
 
             }
             reader.Close();
@@ -64,11 +66,35 @@ namespace TaxiBibki
             conn.Close();
         }
 
-        public void addOperator()
+        private void getCars()
         {
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
-            string sql = "INSERT INTO `users` (`last_name`, `first_name`, `username`, password, `phone`, post) VALUES (@last_name, @first_name, @username, @password, @phone, 'диспетчер');";
+
+            string sql = "SELECT DISTINCT cars.number FROM cars LEFT JOIN users ON cars.number = users.car_number WHERE users.car_number IS NULL UNION SELECT cars.number FROM cars INNER JOIN users ON cars.number = users.car_number WHERE users.id = @id";
+            MySqlCommand command = new MySqlCommand(sql, conn);
+
+            command.Parameters.Add("@id", MySqlDbType.VarChar, 30);
+            command.Parameters["@id"].Value = Store.currentClientId;
+
+            MySqlDataReader reader = command.ExecuteReader();
+            List<string> cars = new List<string>();
+            while (reader.Read())
+            {
+                cars.Add(reader["number"].ToString());
+            }
+            reader.Close();
+
+            conn.Close();
+            comboBox1.DataSource = cars;
+
+        }
+
+        public void addDriver()
+        {
+            MySqlConnection conn = MySQL.getConnection();
+            conn.Open();
+            string sql = "INSERT INTO `users` (`last_name`, `first_name`, `username`, password, `phone`, car_number, post) VALUES (@last_name, @first_name, @username, @password, @phone, @car_number, 'водитель');";
 
             MySqlCommand command = new MySqlCommand(sql, conn);
             command.Parameters.Add("@last_name", MySqlDbType.VarChar, 40);
@@ -86,17 +112,20 @@ namespace TaxiBibki
             command.Parameters.Add("@password", MySqlDbType.VarChar, 50);
             command.Parameters["@password"].Value = password.Text;
 
+            command.Parameters.Add("@car_number", MySqlDbType.VarChar, 50);
+            command.Parameters["@car_number"].Value = comboBox1.Text;
+
             command.ExecuteNonQuery();
             conn.Close();
             MessageBox.Show("Данные добавлены!", " Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
             button4_Click(new object(), new EventArgs());
         }
 
-        public void saveOperator()
+        public void saveDriver()
         {
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
-            string sql = "UPDATE `users` SET `last_name` =@last_name,  `first_name` =@first_name,  `username` = @username,  `phone` = @phone WHERE `users`.`id` = @id;";
+            string sql = "UPDATE `users` SET `last_name` =@last_name,  `first_name` =@first_name,  `username` = @username, car_number=@car_number,  `phone` = @phone WHERE `users`.`id` = @id;";
 
             MySqlCommand command = new MySqlCommand(sql, conn);
 
@@ -114,6 +143,9 @@ namespace TaxiBibki
 
             command.Parameters.Add("@username", MySqlDbType.VarChar, 20);
             command.Parameters["@username"].Value = textBox3.Text;
+
+            command.Parameters.Add("@car_number", MySqlDbType.VarChar, 50);
+            command.Parameters["@car_number"].Value = comboBox1.Text;
 
             command.ExecuteNonQuery();
             conn.Close();
@@ -148,6 +180,15 @@ namespace TaxiBibki
         private void button1_Click(object sender, EventArgs e)
         {
             bool error = false;
+            if (comboBox1.Text == "")
+            {
+                carError.Visible = true;
+                error = true;
+            }
+            else
+            {
+                carError.Visible = false;
+            }
             if (textBox2.Text == "")
             {
                 surnameError.Visible = true;
@@ -186,7 +227,8 @@ namespace TaxiBibki
             {
                 phoneError.Visible = false;
             }
-            if (Store.currentClientId == "") {
+            if (Store.currentClientId == "")
+            {
                 if (password.Text == "")
                 {
                     passwordError.Visible = true;
@@ -201,12 +243,12 @@ namespace TaxiBibki
             {
                 if (Store.currentClientId != "")
                 {
-                    saveOperator();
+                    saveDriver();
 
                 }
                 else
                 {
-                    addOperator();
+                    addDriver();
 
                 }
             }

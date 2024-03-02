@@ -35,19 +35,23 @@
             this.fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createButtonUser = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,19 +59,15 @@
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.createButtonUser = new System.Windows.Forms.Button();
-            this.userNameInpit = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.userNameInpit = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -154,6 +154,16 @@
             this.username.ReadOnly = true;
             this.username.Width = 120;
             // 
+            // createButtonUser
+            // 
+            this.createButtonUser.Location = new System.Drawing.Point(512, 6);
+            this.createButtonUser.Name = "createButtonUser";
+            this.createButtonUser.Size = new System.Drawing.Size(115, 23);
+            this.createButtonUser.TabIndex = 2;
+            this.createButtonUser.Text = "Создать";
+            this.createButtonUser.UseVisualStyleBackColor = true;
+            this.createButtonUser.Click += new System.EventHandler(this.createButtonUser_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
@@ -165,6 +175,16 @@
             this.tabPage2.Size = new System.Drawing.Size(647, 389);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Диспетчер";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(526, 6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Создать";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridView2
             // 
@@ -222,6 +242,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Водители";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(529, 8);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(115, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Создать";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // dataGridView3
             // 
             this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
@@ -237,6 +267,7 @@
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(503, 383);
             this.dataGridView3.TabIndex = 2;
+            this.dataGridView3.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView3_CellMouseClick);
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -277,6 +308,15 @@
             this.tabPage5.Size = new System.Drawing.Size(647, 389);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Заказы";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(526, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(115, 23);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Создать";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // dataGridView4
             // 
@@ -339,71 +379,6 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Смены";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(673, 56);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Выйти";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // createButtonUser
-            // 
-            this.createButtonUser.Location = new System.Drawing.Point(512, 6);
-            this.createButtonUser.Name = "createButtonUser";
-            this.createButtonUser.Size = new System.Drawing.Size(115, 23);
-            this.createButtonUser.TabIndex = 2;
-            this.createButtonUser.Text = "Создать";
-            this.createButtonUser.UseVisualStyleBackColor = true;
-            this.createButtonUser.Click += new System.EventHandler(this.createButtonUser_Click);
-            // 
-            // userNameInpit
-            // 
-            this.userNameInpit.Location = new System.Drawing.Point(516, 12);
-            this.userNameInpit.Name = "userNameInpit";
-            this.userNameInpit.ReadOnly = true;
-            this.userNameInpit.Size = new System.Drawing.Size(272, 20);
-            this.userNameInpit.TabIndex = 3;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(526, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Создать";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(529, 8);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(115, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Создать";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(526, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(115, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Создать";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(529, 7);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(115, 23);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Создать";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // dataGridView5
             // 
             this.dataGridView5.BackgroundColor = System.Drawing.Color.White;
@@ -453,6 +428,33 @@
             this.dataGridViewTextBoxColumn16.HeaderText = "сумма";
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(529, 7);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(115, 23);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "Создать";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(673, 56);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Выйти";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // userNameInpit
+            // 
+            this.userNameInpit.Location = new System.Drawing.Point(516, 12);
+            this.userNameInpit.Name = "userNameInpit";
+            this.userNameInpit.ReadOnly = true;
+            this.userNameInpit.Size = new System.Drawing.Size(272, 20);
+            this.userNameInpit.TabIndex = 3;
             // 
             // Admin
             // 
