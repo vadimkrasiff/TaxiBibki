@@ -211,5 +211,11 @@ namespace TaxiBibki
             driverCard.Show();
             Hide();
         }
+
+        private void dataGridView4_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Order order = new Order();
+            order.Show();
+        }
     }
 }

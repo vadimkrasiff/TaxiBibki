@@ -334,6 +334,7 @@
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.Size = new System.Drawing.Size(501, 383);
             this.dataGridView4.TabIndex = 3;
+            this.dataGridView4.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView4_CellMouseClick);
             // 
             // dataGridViewTextBoxColumn9
             // 
