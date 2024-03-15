@@ -52,6 +52,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.carError = new System.Windows.Forms.Label();
+            this.photoError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,6 +186,7 @@
             this.button2.TabIndex = 129;
             this.button2.Text = "Загрузить фото";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -198,10 +200,11 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Location = new System.Drawing.Point(23, 83);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(225, 264);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 127;
             this.pictureBox1.TabStop = false;
             // 
@@ -293,12 +296,26 @@
             this.carError.Text = "Заполните обязательное поле";
             this.carError.Visible = false;
             // 
+            // photoError
+            // 
+            this.photoError.AutoSize = true;
+            this.photoError.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.photoError.ForeColor = System.Drawing.Color.Red;
+            this.photoError.Location = new System.Drawing.Point(62, 400);
+            this.photoError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.photoError.Name = "photoError";
+            this.photoError.Size = new System.Drawing.Size(145, 17);
+            this.photoError.TabIndex = 144;
+            this.photoError.Text = "Загрузите фотографию";
+            this.photoError.Visible = false;
+            // 
             // DriverCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(203)))), ((int)(((byte)(86)))));
             this.ClientSize = new System.Drawing.Size(492, 450);
+            this.Controls.Add(this.photoError);
             this.Controls.Add(this.carError);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label6);
@@ -362,5 +379,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label carError;
+        private System.Windows.Forms.Label photoError;
     }
 }

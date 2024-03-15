@@ -119,6 +119,56 @@ namespace TaxiBibki
             conn.Close();
         }
 
+        private void getShifts()
+        {
+            dataGridView5.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView5.AllowUserToAddRows = false;
+            dataGridView5.Rows.Clear();
+            MySqlConnection conn = MySQL.getConnection();
+            conn.Open();
+
+            string sql = "SELECT s.id as id, s.start_date as start_date, s.finish_date as finish_date, c.first_name as first_name, c.post as post, c.last_name as last_name  FROM `shift` as s, users as c WHERE s.user_id = c.id;";
+            MySqlCommand command = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                dataGridView5.Rows.Add(
+                    reader["id"].ToString(),
+                    reader.GetString("last_name") + " " + reader.GetString("first_name"),
+                    reader["post"].ToString(),
+                    reader["start_date"].ToString(),
+                    reader["finish_date"].ToString()
+                    );
+            }
+            reader.Close();
+
+            conn.Close();
+        }
+
+        private void getCars()
+        {
+            dataGridView6.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView6.AllowUserToAddRows = false;
+            dataGridView6.Rows.Clear();
+            MySqlConnection conn = MySQL.getConnection();
+            conn.Open();
+
+            string sql = "select number, mark, color from cars";
+            MySqlCommand command = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                dataGridView6.Rows.Add(
+                    reader["number"].ToString(),
+                    reader.GetString("mark"),
+                    reader["color"].ToString()
+                    );
+            }
+            reader.Close();
+
+            conn.Close();
+        }
+
         private void Admin_Load(object sender, EventArgs e)
         {
             userNameInpit.Text = Store.userName;
@@ -155,6 +205,14 @@ namespace TaxiBibki
             if (tabControl1.SelectedIndex == 3)
             {
                 getOrders();
+            }
+            if (tabControl1.SelectedIndex == 4)
+            {
+                getShifts();
+            }
+            if (tabControl1.SelectedIndex == 5)
+            {
+                getCars();
             }
         }
 
@@ -214,8 +272,56 @@ namespace TaxiBibki
 
         private void dataGridView4_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            Store.currentOrderId = dataGridView4.Rows[e.RowIndex].Cells[0].Value.ToString();
             Order order = new Order();
             order.Show();
+            Hide();
+
+        }
+
+        private void tabPage5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView5_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Store.currentShiftId = dataGridView5.Rows[e.RowIndex].Cells[0].Value.ToString();
+            Shift shift= new Shift();
+            shift.Show();
+            Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Shift shift = new Shift();
+            shift.Show();
+            Hide();
+        }
+
+        private void dataGridView6_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Store.currentCarId = dataGridView6.Rows[e.RowIndex].Cells[0].Value.ToString();
+            CarCard car = new CarCard();
+            car.Show();
+            Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CarCard car = new CarCard();
+            car.Show();
+            Hide();
         }
     }
 }

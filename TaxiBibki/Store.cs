@@ -13,5 +13,7 @@ namespace TaxiBibki
         public static string userPost = "";
         public static string currentClientId = "";
         public static string currentOrderId ="";
+        public static string currentShiftId ="";
+        public static string currentCarId = "";
     }
 }

@@ -36,7 +36,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -49,6 +48,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.password = new System.Windows.Forms.TextBox();
             this.updatePassword = new System.Windows.Forms.Button();
+            this.photoError = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,6 +131,7 @@
             this.button2.TabIndex = 102;
             this.button2.Text = "Загрузить фото";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -140,15 +142,6 @@
             this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(24, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(225, 264);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 100;
-            this.pictureBox1.TabStop = false;
             // 
             // label4
             // 
@@ -259,12 +252,38 @@
             this.updatePassword.UseVisualStyleBackColor = true;
             this.updatePassword.Click += new System.EventHandler(this.updatePassword_Click);
             // 
+            // photoError
+            // 
+            this.photoError.AutoSize = true;
+            this.photoError.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.photoError.ForeColor = System.Drawing.Color.Red;
+            this.photoError.Location = new System.Drawing.Point(60, 333);
+            this.photoError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.photoError.Name = "photoError";
+            this.photoError.Size = new System.Drawing.Size(145, 17);
+            this.photoError.TabIndex = 145;
+            this.photoError.Text = "Загрузите фотографию";
+            this.photoError.Visible = false;
+            this.photoError.Click += new System.EventHandler(this.photoError_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Location = new System.Drawing.Point(24, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(225, 264);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 146;
+            this.pictureBox1.TabStop = false;
+            // 
             // OperatorCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(203)))), ((int)(((byte)(86)))));
             this.ClientSize = new System.Drawing.Size(500, 450);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.photoError);
             this.Controls.Add(this.updatePassword);
             this.Controls.Add(this.passwordError);
             this.Controls.Add(this.label5);
@@ -278,7 +297,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox3);
@@ -308,7 +326,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox3;
@@ -321,5 +338,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Button updatePassword;
+        private System.Windows.Forms.Label photoError;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -31,24 +31,28 @@
             this.clientError = new System.Windows.Forms.Label();
             this.clientBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.driverError = new System.Windows.Forms.Label();
-            this.driverBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.statusError = new System.Windows.Forms.Label();
             this.statusBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.firstPoint = new System.Windows.Forms.TextBox();
+            this.finishPoint = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.firstError = new System.Windows.Forms.Label();
+            this.finishError = new System.Windows.Forms.Label();
+            this.sumError = new System.Windows.Forms.Label();
+            this.sumBox = new System.Windows.Forms.NumericUpDown();
+            this.driverBox = new System.Windows.Forms.TextBox();
+            this.submit = new System.Windows.Forms.Button();
+            this.backForm = new System.Windows.Forms.Button();
+            this.delete = new System.Windows.Forms.Button();
+            this.descriptionBox = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.button2 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.sumBox)).BeginInit();
             this.SuspendLayout();
             // 
             // clientError
@@ -82,30 +86,6 @@
             this.label6.TabIndex = 144;
             this.label6.Text = "Клиент";
             // 
-            // driverError
-            // 
-            this.driverError.AutoSize = true;
-            this.driverError.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.driverError.ForeColor = System.Drawing.Color.Red;
-            this.driverError.Location = new System.Drawing.Point(21, 115);
-            this.driverError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.driverError.Name = "driverError";
-            this.driverError.Size = new System.Drawing.Size(184, 17);
-            this.driverError.TabIndex = 149;
-            this.driverError.Text = "Заполните обязательное поле";
-            this.driverError.Visible = false;
-            this.driverError.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // driverBox
-            // 
-            this.driverBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.driverBox.FormattingEnabled = true;
-            this.driverBox.Location = new System.Drawing.Point(12, 92);
-            this.driverBox.Name = "driverBox";
-            this.driverBox.Size = new System.Drawing.Size(225, 21);
-            this.driverBox.TabIndex = 148;
-            this.driverBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -134,6 +114,12 @@
             // 
             this.statusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusBox.FormattingEnabled = true;
+            this.statusBox.Items.AddRange(new object[] {
+            "заявка",
+            "оформлено",
+            "в работе",
+            "отказ",
+            "готово"});
             this.statusBox.Location = new System.Drawing.Point(12, 157);
             this.statusBox.Name = "statusBox";
             this.statusBox.Size = new System.Drawing.Size(225, 21);
@@ -148,58 +134,28 @@
             this.label3.TabIndex = 150;
             this.label3.Text = "Статус";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(21, 243);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(184, 17);
-            this.label4.TabIndex = 155;
-            this.label4.Text = "Заполните обязательное поле";
-            this.label4.Visible = false;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(12, 220);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(225, 21);
-            this.comboBox2.TabIndex = 154;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(21, 204);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 153;
-            this.label5.Text = "Водитель";
+            this.label5.Text = "Сумма";
             // 
-            // pictureBox1
+            // firstPoint
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(272, 30);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(516, 408);
-            this.pictureBox1.TabIndex = 156;
-            this.pictureBox1.TabStop = false;
+            this.firstPoint.Location = new System.Drawing.Point(12, 281);
+            this.firstPoint.Name = "firstPoint";
+            this.firstPoint.Size = new System.Drawing.Size(225, 20);
+            this.firstPoint.TabIndex = 157;
             // 
-            // textBox1
+            // finishPoint
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 281);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(225, 20);
-            this.textBox1.TabIndex = 157;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(12, 337);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(225, 20);
-            this.textBox2.TabIndex = 158;
+            this.finishPoint.Location = new System.Drawing.Point(12, 337);
+            this.finishPoint.Name = "finishPoint";
+            this.finishPoint.Size = new System.Drawing.Size(225, 20);
+            this.finishPoint.TabIndex = 158;
             // 
             // label1
             // 
@@ -219,73 +175,176 @@
             this.label7.TabIndex = 160;
             this.label7.Text = "Конечная точка";
             // 
-            // label8
+            // firstError
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(21, 304);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(184, 17);
-            this.label8.TabIndex = 161;
-            this.label8.Text = "Заполните обязательное поле";
-            this.label8.Visible = false;
+            this.firstError.AutoSize = true;
+            this.firstError.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.firstError.ForeColor = System.Drawing.Color.Red;
+            this.firstError.Location = new System.Drawing.Point(21, 304);
+            this.firstError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.firstError.Name = "firstError";
+            this.firstError.Size = new System.Drawing.Size(184, 17);
+            this.firstError.TabIndex = 161;
+            this.firstError.Text = "Заполните обязательное поле";
+            this.firstError.Visible = false;
             // 
-            // label9
+            // finishError
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(21, 360);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(184, 17);
-            this.label9.TabIndex = 162;
-            this.label9.Text = "Заполните обязательное поле";
-            this.label9.Visible = false;
+            this.finishError.AutoSize = true;
+            this.finishError.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.finishError.ForeColor = System.Drawing.Color.Red;
+            this.finishError.Location = new System.Drawing.Point(21, 360);
+            this.finishError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.finishError.Name = "finishError";
+            this.finishError.Size = new System.Drawing.Size(184, 17);
+            this.finishError.TabIndex = 162;
+            this.finishError.Text = "Заполните обязательное поле";
+            this.finishError.Visible = false;
+            // 
+            // sumError
+            // 
+            this.sumError.AutoSize = true;
+            this.sumError.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sumError.ForeColor = System.Drawing.Color.Red;
+            this.sumError.Location = new System.Drawing.Point(21, 243);
+            this.sumError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.sumError.Name = "sumError";
+            this.sumError.Size = new System.Drawing.Size(184, 17);
+            this.sumError.TabIndex = 155;
+            this.sumError.Text = "Заполните обязательное поле";
+            this.sumError.Visible = false;
+            // 
+            // sumBox
+            // 
+            this.sumBox.DecimalPlaces = 2;
+            this.sumBox.Location = new System.Drawing.Point(12, 220);
+            this.sumBox.Maximum = new decimal(new int[] {
+            -469762048,
+            -590869294,
+            5421010,
+            0});
+            this.sumBox.Name = "sumBox";
+            this.sumBox.Size = new System.Drawing.Size(225, 20);
+            this.sumBox.TabIndex = 163;
+            // 
+            // driverBox
+            // 
+            this.driverBox.Enabled = false;
+            this.driverBox.Location = new System.Drawing.Point(12, 92);
+            this.driverBox.Name = "driverBox";
+            this.driverBox.Size = new System.Drawing.Size(225, 20);
+            this.driverBox.TabIndex = 164;
+            // 
+            // submit
+            // 
+            this.submit.Location = new System.Drawing.Point(254, 243);
+            this.submit.Name = "submit";
+            this.submit.Size = new System.Drawing.Size(225, 23);
+            this.submit.TabIndex = 165;
+            this.submit.Text = "Сохранить";
+            this.submit.UseVisualStyleBackColor = true;
+            this.submit.Click += new System.EventHandler(this.submit_Click);
+            // 
+            // backForm
+            // 
+            this.backForm.Location = new System.Drawing.Point(254, 360);
+            this.backForm.Name = "backForm";
+            this.backForm.Size = new System.Drawing.Size(225, 23);
+            this.backForm.TabIndex = 166;
+            this.backForm.Text = "Назад";
+            this.backForm.UseVisualStyleBackColor = true;
+            this.backForm.Click += new System.EventHandler(this.backForm_Click);
+            // 
+            // delete
+            // 
+            this.delete.BackColor = System.Drawing.Color.Red;
+            this.delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.delete.ForeColor = System.Drawing.Color.Transparent;
+            this.delete.Location = new System.Drawing.Point(254, 281);
+            this.delete.Name = "delete";
+            this.delete.Size = new System.Drawing.Size(225, 23);
+            this.delete.TabIndex = 167;
+            this.delete.Text = "Отменить заказ";
+            this.delete.UseVisualStyleBackColor = false;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
+            // 
+            // descriptionBox
+            // 
+            this.descriptionBox.Location = new System.Drawing.Point(254, 30);
+            this.descriptionBox.Name = "descriptionBox";
+            this.descriptionBox.Size = new System.Drawing.Size(225, 197);
+            this.descriptionBox.TabIndex = 169;
+            this.descriptionBox.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(267, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.TabIndex = 170;
+            this.label4.Text = "Комментарий";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 391);
+            this.button1.Location = new System.Drawing.Point(254, 243);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(225, 23);
-            this.button1.TabIndex = 163;
-            this.button1.Text = "Построить маршрут";
+            this.button1.TabIndex = 171;
+            this.button1.Text = "Взять в работу ";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(254, 321);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(225, 23);
+            this.button2.TabIndex = 172;
+            this.button2.Text = "Завершить";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(203)))), ((int)(((byte)(86)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(491, 394);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.descriptionBox);
+            this.Controls.Add(this.delete);
+            this.Controls.Add(this.backForm);
+            this.Controls.Add(this.submit);
+            this.Controls.Add(this.driverBox);
+            this.Controls.Add(this.sumBox);
+            this.Controls.Add(this.finishError);
+            this.Controls.Add(this.firstError);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.finishPoint);
+            this.Controls.Add(this.firstPoint);
+            this.Controls.Add(this.sumError);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.statusError);
             this.Controls.Add(this.statusBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.driverError);
-            this.Controls.Add(this.driverBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.clientError);
             this.Controls.Add(this.clientBox);
             this.Controls.Add(this.label6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(507, 433);
+            this.MinimumSize = new System.Drawing.Size(507, 433);
             this.Name = "Order";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Order";
             this.Load += new System.EventHandler(this.Order_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sumBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,22 +355,26 @@
         private System.Windows.Forms.Label clientError;
         private System.Windows.Forms.ComboBox clientBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label driverError;
-        private System.Windows.Forms.ComboBox driverBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label statusError;
         private System.Windows.Forms.ComboBox statusBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox firstPoint;
+        private System.Windows.Forms.TextBox finishPoint;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label firstError;
+        private System.Windows.Forms.Label finishError;
+        private System.Windows.Forms.Label sumError;
+        private System.Windows.Forms.NumericUpDown sumBox;
+        private System.Windows.Forms.TextBox driverBox;
+        private System.Windows.Forms.Button submit;
+        private System.Windows.Forms.Button backForm;
+        private System.Windows.Forms.Button delete;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RichTextBox descriptionBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -53,7 +53,7 @@ namespace TaxiBibki
                 try
                 {
                     conn.Open();
-                    string sql = "select password, post, id, last_name, first_name from users where username = @login limit 1;";
+                    string sql = "SELECT u.password, u.post, u.id, u.last_name, u.first_name, s.finish_date, s.start_date FROM users u LEFT JOIN shift s ON u.id = s.user_id AND s.finish_date >= NOW() AND s.start_date <= NOW() WHERE u.username = @login LIMIT 1;";
                     MySqlCommand command = new MySqlCommand(sql, conn);
                     command.Parameters.Add("@login", MySqlDbType.VarChar, 30);
                     command.Parameters["@login"].Value = login.Text;
@@ -61,6 +61,8 @@ namespace TaxiBibki
                     string post = "";
                     string id = "";
                     string fullname = "";
+                    string startDate = "";
+                    string finishDate = "";
                     string hashedInputPassword = CalculateSHA256Hash(password.Text);
 
                     if (command.ExecuteScalar() != null)
@@ -73,26 +75,45 @@ namespace TaxiBibki
                                 post = reader.GetString("post");
                                 id = reader.GetString("id");
                                 fullname = reader.GetString("last_name") + " " + reader.GetString("first_name");
+                                startDate = reader["start_date"].ToString();
+                                finishDate = reader["finish_date"].ToString();
+
                             }
                         }
                         if (string.Equals(password_u, hashedInputPassword))
                         {
-                            MessageBox.Show("Вы вошли");
+                            
                             Store.userId = id;
                             Store.userPost = post;
                             Store.userName = fullname;
-                            if (post == "администратор")
+                            if ((startDate != "" && finishDate != "") || post == "администратор")
                             {
-                                Admin newAdmin = new Admin();
-                                newAdmin.Show();
-                            } else if (post == "диспетчер") {
-                            } else if (post == "водитель") {
+                                MessageBox.Show("Вы вошли");
+                                if (post == "администратор")
+                                {
+                                    Admin newAdmin = new Admin();
+                                    newAdmin.Show();
+                                }
+                                else if (post == "диспетчер")
+                                {
+                                    Operator newOperator = new Operator();
+                                    newOperator.Show();
+                                }
+                                else if (post == "водитель")
+                                {
+                                    Driver newDriver = new Driver();
+                                    newDriver.Show();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("У вас нет доступа!", "Ошибка");
+                                }
+
+                                Hide();
                             } else
                             {
-                                MessageBox.Show("У вас нет доступа!", "Ошибка");
+                                MessageBox.Show("Не ваша смена!\rУ вас нет доступа!", "Ошибка");
                             }
-
-                            Hide();
                         }
                         else
                         {

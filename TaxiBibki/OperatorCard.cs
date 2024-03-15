@@ -13,6 +13,8 @@ namespace TaxiBibki
 {
     public partial class OperatorCard : Form
     {
+        private string imagePath = "";
+
         public OperatorCard()
         {
             InitializeComponent();
@@ -46,7 +48,7 @@ namespace TaxiBibki
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
 
-            string sql = "select first_name, last_name, username, phone from users where id = @id limit 1";
+            string sql = "select first_name, last_name, username, avatar, phone from users where id = @id limit 1";
             MySqlCommand command = new MySqlCommand(sql, conn);
             command.Parameters.Add("@id", MySqlDbType.VarChar, 30);
             command.Parameters["@id"].Value = Store.currentClientId;
@@ -57,18 +59,24 @@ namespace TaxiBibki
                 textBox2.Text = reader["last_name"].ToString();
                 textBox3.Text = reader["username"].ToString();
                 maskedTextBox1.Text = reader["phone"].ToString();
+                imagePath = reader["avatar"].ToString();
+
 
             }
             reader.Close();
 
             conn.Close();
+            if (imagePath != "" && imagePath != null)
+            {
+                pictureBox1.Image = Image.FromFile(imagePath);
+            }
         }
 
         public void addOperator()
         {
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
-            string sql = "INSERT INTO `users` (`last_name`, `first_name`, `username`, password, `phone`, post) VALUES (@last_name, @first_name, @username, @password, @phone, 'диспетчер');";
+            string sql = "INSERT INTO `users` (`last_name`, `first_name`, `username`, password, `phone`, post, avatar) VALUES (@last_name, @first_name, @username, @password, @phone, 'диспетчер', @avatar);";
 
             MySqlCommand command = new MySqlCommand(sql, conn);
             command.Parameters.Add("@last_name", MySqlDbType.VarChar, 40);
@@ -86,6 +94,9 @@ namespace TaxiBibki
             command.Parameters.Add("@password", MySqlDbType.VarChar, 50);
             command.Parameters["@password"].Value = password.Text;
 
+            command.Parameters.Add("@avatar", MySqlDbType.Text);
+            command.Parameters["@avatar"].Value = imagePath;
+
             command.ExecuteNonQuery();
             conn.Close();
             MessageBox.Show("Данные добавлены!", " Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -96,7 +107,7 @@ namespace TaxiBibki
         {
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
-            string sql = "UPDATE `users` SET `last_name` =@last_name,  `first_name` =@first_name,  `username` = @username,  `phone` = @phone WHERE `users`.`id` = @id;";
+            string sql = "UPDATE `users` SET `last_name` =@last_name,  `first_name` =@first_name, avatar=@avatar,  `username` = @username,  `phone` = @phone WHERE `users`.`id` = @id;";
 
             MySqlCommand command = new MySqlCommand(sql, conn);
 
@@ -114,6 +125,9 @@ namespace TaxiBibki
 
             command.Parameters.Add("@username", MySqlDbType.VarChar, 20);
             command.Parameters["@username"].Value = textBox3.Text;
+
+            command.Parameters.Add("@avatar", MySqlDbType.Text);
+            command.Parameters["@avatar"].Value = imagePath;
 
             command.ExecuteNonQuery();
             conn.Close();
@@ -226,6 +240,28 @@ namespace TaxiBibki
         {
             NewPassword newPassword = new NewPassword();
             newPassword.Show();
+        }
+
+        private void photoError_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            // Фильтр для отображения только изображений
+            openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg; *.jpeg; *.png; *.gif; *.bmp";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Получаем выбранный путь к файлу
+                imagePath = openFileDialog.FileName;
+
+                // Отображаем изображение на PictureBox
+                pictureBox1.Image = Image.FromFile(imagePath);
+            }
         }
     }
 }

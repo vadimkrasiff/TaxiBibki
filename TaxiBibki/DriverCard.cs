@@ -13,6 +13,8 @@ namespace TaxiBibki
 {
     public partial class DriverCard : Form
     {
+        private string imagePath = "";
+
         public DriverCard()
         {
             InitializeComponent();
@@ -47,7 +49,7 @@ namespace TaxiBibki
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
 
-            string sql = "select first_name, last_name, username, car_number, phone from users where id = @id limit 1";
+            string sql = "select first_name, last_name, username, car_number, avatar, phone from users where id = @id limit 1";
             MySqlCommand command = new MySqlCommand(sql, conn);
             command.Parameters.Add("@id", MySqlDbType.VarChar, 30);
             command.Parameters["@id"].Value = Store.currentClientId;
@@ -59,11 +61,16 @@ namespace TaxiBibki
                 textBox3.Text = reader["username"].ToString();
                 maskedTextBox1.Text = reader["phone"].ToString();
                 comboBox1.Text = reader["car_number"].ToString();
-
+                imagePath = reader["avatar"].ToString();
             }
             reader.Close();
 
             conn.Close();
+            if (imagePath != "" && imagePath != null)
+            {
+                pictureBox1.Image = Image.FromFile(imagePath);
+            }
+
         }
 
         private void getCars()
@@ -94,7 +101,7 @@ namespace TaxiBibki
         {
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
-            string sql = "INSERT INTO `users` (`last_name`, `first_name`, `username`, password, `phone`, car_number, post) VALUES (@last_name, @first_name, @username, @password, @phone, @car_number, 'водитель');";
+            string sql = "INSERT INTO `users` (`last_name`, `first_name`, `username`, password, `phone`, car_number, post, avatar) VALUES (@last_name, @first_name, @username, @password, @phone, @car_number, 'водитель', @avatar);";
 
             MySqlCommand command = new MySqlCommand(sql, conn);
             command.Parameters.Add("@last_name", MySqlDbType.VarChar, 40);
@@ -114,6 +121,9 @@ namespace TaxiBibki
 
             command.Parameters.Add("@car_number", MySqlDbType.VarChar, 50);
             command.Parameters["@car_number"].Value = comboBox1.Text;
+            
+            command.Parameters.Add("@avatar", MySqlDbType.Text);
+            command.Parameters["@avatar"].Value = imagePath;
 
             command.ExecuteNonQuery();
             conn.Close();
@@ -125,7 +135,7 @@ namespace TaxiBibki
         {
             MySqlConnection conn = MySQL.getConnection();
             conn.Open();
-            string sql = "UPDATE `users` SET `last_name` =@last_name,  `first_name` =@first_name,  `username` = @username, car_number=@car_number,  `phone` = @phone WHERE `users`.`id` = @id;";
+            string sql = "UPDATE `users` SET `last_name` =@last_name, avatar=@avatar,  `first_name` =@first_name,  `username` = @username, car_number=@car_number,  `phone` = @phone WHERE `users`.`id` = @id;";
 
             MySqlCommand command = new MySqlCommand(sql, conn);
 
@@ -146,6 +156,9 @@ namespace TaxiBibki
 
             command.Parameters.Add("@car_number", MySqlDbType.VarChar, 50);
             command.Parameters["@car_number"].Value = comboBox1.Text;
+
+            command.Parameters.Add("@avatar", MySqlDbType.Text);
+            command.Parameters["@avatar"].Value = imagePath;
 
             command.ExecuteNonQuery();
             conn.Close();
@@ -188,6 +201,15 @@ namespace TaxiBibki
             else
             {
                 carError.Visible = false;
+            }
+            if (imagePath == "")
+            {
+                photoError.Visible = true;
+                error = true;
+            }
+            else
+            {
+                photoError.Visible = false;
             }
             if (textBox2.Text == "")
             {
@@ -268,6 +290,23 @@ namespace TaxiBibki
         {
             NewPassword newPassword = new NewPassword();
             newPassword.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            // Фильтр для отображения только изображений
+            openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg; *.jpeg; *.png; *.gif; *.bmp";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Получаем выбранный путь к файлу
+                imagePath = openFileDialog.FileName;
+
+                // Отображаем изображение на PictureBox
+                pictureBox1.Image = Image.FromFile(imagePath);
+            }
         }
     }
 }
