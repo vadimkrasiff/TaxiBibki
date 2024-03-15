@@ -73,10 +73,17 @@ namespace TaxiBibki
                 MySqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {   
-                    if(reader["status"].ToString() == "отказ") {
+                    if(reader["status"].ToString() == "отказ" || reader["status"].ToString() == "готово") {
                         statusBox.Enabled = false;
-                        submit.Visible = false;
                         delete.Visible = false;
+
+                    }
+                    if (reader["status"].ToString() != "заявка" && reader["status"].ToString() != "оформлено")
+                    {
+                        firstPoint.Enabled = false;
+                        finishPoint.Enabled = false;
+                        sumBox.Enabled = false;
+                        statusBox.Enabled = false;
                     }
                     if (Store.userPost == "водитель")
                     {

@@ -191,6 +191,16 @@ namespace TaxiBibki
             {
                 usernameError.Visible = false;
             }
+            if (imagePath == "")
+            {
+                photoError.Visible = true;
+                error = true;
+
+            }
+            else
+            {
+                photoError.Visible = false;
+            }
             if (maskedTextBox1.Text.Length != 11)
             {
                 phoneError.Visible = true;
